@@ -32,9 +32,21 @@ class EquipeTest {
     void getConducteurs() {
         Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
             Equipe equipe = new Equipe(-200,"Future");
-
         });
         assertEquals("Pas de carburant negatif", exception.getMessage());
+    }
+
+@Test
+    void Carburant() {
+        Throwable exception = assertThrows(IllegalStateException.class, () -> {
+            Equipe equipe = new Equipe(200,"Future");
+            equipe.addVoiture(new Voiture("Mercedes",500,2,"Mercedes",200,0));
+            equipe.addVoiture(new Voiture("Mercedes",500,2,"Mercedes",200,0));
+            equipe.addVoiture(new Voiture("Mercedes",500,2,"Mercedes",200,0));
+            equipe.fullStockDeCarburant();
+
+        });
+        assertEquals("Il faut commander 100 pour les voiture", exception.getMessage());
     }
 
 }

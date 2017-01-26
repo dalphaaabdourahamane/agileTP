@@ -14,10 +14,11 @@ public class Voiture {
     private int nbPlace = 1;
     private String model = "";
     private int vitesseMax = 300;
-    private int essence = 100; //en pourcentage
+    private int essence = 100; //l
     private final List<Conducteur> conducteurs;
 
     public Voiture(String marque, int puissance, int nbPlace, String model, int vitesseMax, int essence) {
+        if(vitesseMax < 200 ) throw new IllegalArgumentException("Ici c'est la formule 1 rentre chez toi");
         this.marque = marque;
         this.puissance = puissance;
         this.nbPlace = nbPlace;
@@ -78,6 +79,7 @@ public class Voiture {
     }
 
     public void setVitesseMax(int vitesseMax) {
+        if(vitesseMax < 200 ) throw new IllegalArgumentException("Ici c'est la formule 1 rentre chez toi");
         this.vitesseMax = (vitesseMax > 300)? 300 :vitesseMax;
     }
 
@@ -87,7 +89,7 @@ public class Voiture {
 
     public void setEssence(int essence) {
         this.essence = essence;
-        if(this.essence <10) this.vitesseMax = 50;
+        if(this.essence <10) this.vitesseMax = 150;
     }
 
     public List<Conducteur> getConducteurs() {

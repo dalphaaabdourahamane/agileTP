@@ -83,12 +83,18 @@ class VoitureTest {
     }
 
     @Test
-    void setVitesseMax() {
-
+    void svreatVitesseMax() {
+        Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
+            Voiture voiture = new Voiture("Mercedes",500,2,"Mercedes",100,100);
+        });
+        assertEquals("Ici c'est la formule 1 rentre chez toi", exception.getMessage());
     }
 
     @Test
-    void equals() {
+    void setVitesse() {
+        Voiture voiture = new Voiture("Mercedes",500,2,"Mercedes",200,100);
+        voiture.setEssence(8);
+        assertTrue(voiture.getVitesseMax() == 150);
 
     }
 

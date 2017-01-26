@@ -43,6 +43,22 @@ public class Equipe {
         return stockDeCarburant;
     }
 
+    public int fullStockDeCarburant() {
+        int carburant = 0;
+        for(Voiture v : voitures){
+            carburant += 100 - v.getEssence();
+        }
+        if(carburant<this.stockDeCarburant){
+            for(Voiture v:voitures){
+                v.setEssence(100);
+            }
+            this.stockDeCarburant -= carburant;
+            return this.stockDeCarburant;
+        }else {
+            throw new IllegalStateException("Il faut commander "+(carburant -this.stockDeCarburant)+" pour les voiture");
+        }
+    }
+
     public void setStockDeCarburant(int stockDeCarburant) {
         if (stockDeCarburant <= 0) throw new IllegalArgumentException("Pas de carburant negatif");
         this.stockDeCarburant = stockDeCarburant;
